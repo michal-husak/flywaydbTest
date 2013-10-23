@@ -1,0 +1,56 @@
+10-23 10:23:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE CONTACT
+(ID INTEGER PRIMARY KEY,
+ID_PERSON INTEGER NOT NULL,
+CONTACT VARCHAR(100) NOT NULL
+FOREIGN[*] KEY (ID_PESRON) REFERENCES PERSON(ID)
+) "; expected "AS, DEFAULT, GENERATED, NOT, NULL, AUTO_INCREMENT, BIGSERIAL, SERIAL, IDENTITY, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, PRIMARY, UNIQUE, NOT, NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table contact
+(id integer primary key,
+id_person integer not null,
+contact varchar(100) not null
+foreign key (id_pesron) references person(id)
+) [42001-173]
+10-23 10:28:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ID_PESRON" not found; SQL statement:
+create table contact
+(id int primary key,
+id_person int not null,
+name varchar(100) not null,
+foreign key (id_pesron) references person(id)
+) [42122-173]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:331)
+	at org.h2.message.DbException.get(DbException.java:171)
+	at org.h2.message.DbException.get(DbException.java:148)
+	at org.h2.table.Table.getColumn(Table.java:613)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:75)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:188)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:70)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:169)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:79)
+	at org.h2.command.Command.executeUpdate(Command.java:235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:181)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:156)
+	at com.googlecode.flyway.core.dbsupport.JdbcTemplate.executeStatement(JdbcTemplate.java:230)
+	at com.googlecode.flyway.core.dbsupport.SqlScript.execute(SqlScript.java:89)
+	at com.googlecode.flyway.core.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:72)
+	at com.googlecode.flyway.core.command.DbMigrate$2.doInTransaction(DbMigrate.java:252)
+	at com.googlecode.flyway.core.command.DbMigrate$2.doInTransaction(DbMigrate.java:250)
+	at com.googlecode.flyway.core.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:56)
+	at com.googlecode.flyway.core.command.DbMigrate.applyMigration(DbMigrate.java:250)
+	at com.googlecode.flyway.core.command.DbMigrate.access$700(DbMigrate.java:47)
+	at com.googlecode.flyway.core.command.DbMigrate$1.doInTransaction(DbMigrate.java:189)
+	at com.googlecode.flyway.core.command.DbMigrate$1.doInTransaction(DbMigrate.java:138)
+	at com.googlecode.flyway.core.util.jdbc.TransactionTemplate.execute(TransactionTemplate.java:56)
+	at com.googlecode.flyway.core.command.DbMigrate.migrate(DbMigrate.java:137)
+	at com.googlecode.flyway.core.Flyway$1.execute(Flyway.java:872)
+	at com.googlecode.flyway.core.Flyway$1.execute(Flyway.java:819)
+	at com.googlecode.flyway.core.Flyway.execute(Flyway.java:1200)
+	at com.googlecode.flyway.core.Flyway.migrate(Flyway.java:819)
+	at sk.flyway.test.App.main(App.java:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:297)
+	at java.lang.Thread.run(Unknown Source)
