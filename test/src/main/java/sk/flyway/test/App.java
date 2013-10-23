@@ -16,8 +16,8 @@ public class App
         flyway.setDataSource("jdbc:h2:file:target/sk.flyway.test", "sa", null);
 
         // Start the migration
-        flyway.migrate();
+        //flyway.migrate();
         //flyway.clean();
-        //flyway.repair();
+        flyway.repair();
     }
 }
